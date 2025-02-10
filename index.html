@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Art Gallery</title>
+    <title>I Dream of Old Piassa</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .gallery {
@@ -11,10 +11,44 @@
             justify-content: center;
             gap: 0;
         }
-        .gallery img {
+        .gallery img, .gallery video {
             border: none;
+            width: 200px;
+            height: auto;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".gallery img");
+            const videos = [
+                "videos/generated_2.mp4",
+                "videos/generated_3.mp4",
+                "videos/generated_4.mp4"
+            ];
+            
+            function replaceWithVideo() {
+                if (document.querySelectorAll(".gallery video").length >= 2) return;
+                
+                let randomIndex = Math.floor(Math.random() * images.length);
+                let img = images[randomIndex];
+                
+                let video = document.createElement("video");
+                video.src = videos[Math.floor(Math.random() * videos.length)];
+                video.autoplay = true;
+                video.loop = true;
+                video.width = img.width;
+                video.height = img.height;
+                
+                img.replaceWith(video);
+                
+                setTimeout(() => {
+                    video.replaceWith(img);
+                }, Math.random() * 5000 + 5000); // 5 to 10 seconds duration
+            }
+            
+            setInterval(replaceWithVideo, Math.random() * 5000 + 2000); // Random intervals
+        });
+    </script>
 </head>
 <body>
     <h1>My Art Gallery</h1>
