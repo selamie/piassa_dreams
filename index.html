@@ -11,7 +11,7 @@
             justify-content: center;
             gap: 0;
         }
-        .gallery img, .gallery video {
+        .gallery img {
             border: none;
             width: 200px;
             height: auto;
@@ -20,36 +20,32 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const images = document.querySelectorAll(".gallery img");
-            const videos = [
-                "videos/generated_2.mp4",
-                "videos/generated_3.mp4",
-                "videos/generated_4.mp4"
+            const gifs = [
+                "gifs/generated_2.gif",
+                "gifs/generated_3.gif",
+                "gifs/generated_4.gif"
             ];
             
-            function replaceWithVideo() {
-                if (document.querySelectorAll(".gallery video").length >= 2) return;
+            function replaceWithGif() {
+                if (document.querySelectorAll(".gallery .gif").length >= 2) return;
                 
                 let randomIndex = Math.floor(Math.random() * images.length);
                 let img = images[randomIndex];
                 
-                let video = document.createElement("video");
-                video.src = videos[Math.floor(Math.random() * videos.length)];
-                video.autoplay = true;
-                video.loop = true;
-                video.muted = true; // Ensure autoplay works
-                video.width = img.width;
-                video.height = img.height;
+                let gif = document.createElement("img");
+                gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+                gif.classList.add("gif");
+                gif.width = img.width;
+                gif.height = img.height;
                 
-                video.oncanplay = () => video.play(); // Ensure video starts playing when ready
-                
-                img.replaceWith(video);
+                img.replaceWith(gif);
                 
                 setTimeout(() => {
-                    video.replaceWith(img);
+                    gif.replaceWith(img);
                 }, Math.random() * 5000 + 5000); // 5 to 10 seconds duration
             }
             
-            setInterval(replaceWithVideo, Math.random() * 5000 + 2000); // Random intervals
+            setInterval(replaceWithGif, Math.random() * 5000 + 2000); // Random intervals
         });
     </script>
 </head>
@@ -60,10 +56,7 @@
         <img src="images/image_3.png" alt="Artwork 2">
         <img src="images/image_4.png" alt="Artwork 3">
     </div>
-    <h2>Video Test</h2>
-    <video controls="" width="1024" height="576" muted="" loop="" autoplay="">
-    <source src="https://github.com/selamie/piassa_dreams/raw/refs/heads/main/videos/generated_1.mp4" type="video/mp4">
-    </video>
-
+    <h2>GIF Test</h2>
+    <img src="https://github.com/selamie/piassa_dreams/raw/refs/heads/main/gifs/generated_1.gif" width="1024" height="576" alt="GIF Example">
 </body>
 </html>
