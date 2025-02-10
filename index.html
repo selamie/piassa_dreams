@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Art Gallery</title>
+    <title>Machines Don't Dream of Us</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .gallery {
@@ -20,21 +20,26 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const imageMap = {
-                "images/image_2.png": "gifs/generated_2.gif",
-                "images/image_3.png": "gifs/generated_3.gif",
-                "images/image_4.png": "gifs/generated_4.gif"
+                "image_2.png": "gifs/generated_2.gif",
+                "image_3.png": "gifs/generated_3.gif",
+                "image_4.png": "gifs/generated_4.gif"
+                // "image_5.png": "gifs/generated_5.gif",      
+                // "image_6.png": "gifs/generated_6.gif",
+                // "image_7.png": "gifs/generated_7.gif",  
+                // "image_8.png": "gifs/generated_8.gif",    
+                // "image_9.png": "gifs/generated_9.gif"
             };
             
             const images = document.querySelectorAll(".gallery img");
             
             function replaceWithGif() {
                 let img = images[Math.floor(Math.random() * images.length)];
-                let gifSrc = imageMap[img.src.split('/').pop()];
+                let imgFilename = img.getAttribute("src").split('/').pop(); // Get just the filename
                 
-                if (!gifSrc) return;
+                if (!imageMap[imgFilename]) return;
                 
                 let gif = document.createElement("img");
-                gif.src = gifSrc;
+                gif.src = imageMap[imgFilename];
                 gif.classList.add("gif");
                 gif.width = img.width;
                 gif.height = img.height;
