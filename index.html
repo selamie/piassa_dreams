@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I Dream of Old Piassa</title>
+    <title>My Art Gallery</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .gallery {
@@ -36,8 +36,11 @@
                 video.src = videos[Math.floor(Math.random() * videos.length)];
                 video.autoplay = true;
                 video.loop = true;
+                video.muted = true; // Ensure autoplay works
                 video.width = img.width;
                 video.height = img.height;
+                
+                video.oncanplay = () => video.play(); // Ensure video starts playing when ready
                 
                 img.replaceWith(video);
                 
