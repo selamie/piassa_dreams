@@ -19,21 +19,22 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const imageMap = {
+                "images/image_2.png": "gifs/generated_2.gif",
+                "images/image_3.png": "gifs/generated_3.gif",
+                "images/image_4.png": "gifs/generated_4.gif"
+            };
+            
             const images = document.querySelectorAll(".gallery img");
-            const gifs = [
-                "gifs/generated_2.gif",
-                "gifs/generated_3.gif",
-                "gifs/generated_4.gif"
-            ];
             
             function replaceWithGif() {
-                if (document.querySelectorAll(".gallery .gif").length >= 2) return;
+                let img = images[Math.floor(Math.random() * images.length)];
+                let gifSrc = imageMap[img.src.split('/').pop()];
                 
-                let randomIndex = Math.floor(Math.random() * images.length);
-                let img = images[randomIndex];
+                if (!gifSrc) return;
                 
                 let gif = document.createElement("img");
-                gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+                gif.src = gifSrc;
                 gif.classList.add("gif");
                 gif.width = img.width;
                 gif.height = img.height;
@@ -56,7 +57,5 @@
         <img src="images/image_3.png" alt="Artwork 2">
         <img src="images/image_4.png" alt="Artwork 3">
     </div>
-    <h2>GIF Test</h2>
-    <img src="https://github.com/selamie/piassa_dreams/raw/refs/heads/main/gifs/generated_1.gif" width="1024" height="576" alt="GIF Example">
 </body>
 </html>
